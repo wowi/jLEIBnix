@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Leibnix Configuration Plug-in
+Bundle-SymbolicName: org.leibnix.configuration
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.configuration.Activator
+Import-Package: org.osgi.framework;version="1.3.0"
+Require-Bundle: org.leibnix.libs
+Export-Package: org.leibnix.configuration
