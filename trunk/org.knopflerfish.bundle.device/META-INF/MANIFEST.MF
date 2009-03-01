@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Device-Manager
+Bundle-SymbolicName: org.knopflerfish.bundle.device
+Bundle-Version: 2.0.0
+Bundle-Activator: org.knopflerfish.bundle.device.Activator
+Bundle-Vendor: Knopflerfish
+Export-Package: org.osgi.service.device;specification-version=1.1.0
+Built-From: /home/ekolin/work/kf/knopflerfish.org-2.0.4/osgi/bundles/device/device
+Import-Package: org.osgi.framework,org.osgi.service.device,org.osgi.service.log
+Bundle-UUID: org.knopflerfish:device:2.0.0
+Bundle-SubversionURL: https://www.knopflerfish.org/svn/
+Bundle-Description: Device manager
+Bundle-ContactAddress: http://www.knopflerfish.org
+Build-Date: Fri February 8 2008, 10:29:46
+Bundle-DocURL: http://www.knopflerfish.org
+Bundle-Classpath: device_all-2.0.0.jar
+Ant-Version: Apache Ant 1.7.0
+Created-By: 1.4.2_14-b05 (Sun Microsystems Inc.)
+Bundle-Category: service
+Bundle-APIVendor: OSGi
