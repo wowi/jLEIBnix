@@ -1,0 +1,32 @@
+Manifest-Version: 1.0
+Bundle-Name: R-OSGi Remote Service
+Bundle-SymbolicName: ch.ethz.iks.r_osgi.remote
+Bundle-Version: 1.0.0.RC1
+Bundle-Activator: ch.ethz.iks.r_osgi.impl.RemoteOSGiActivator
+Bundle-Vendor: Jan S. Rellermeyer, ETH Zurich
+Export-Package: ch.ethz.iks.r_osgi.types, ch.ethz.iks.util, org.objectweb.asm, ch.ethz.iks.r_osgi.service_discovery, ch.ethz.iks.r_osgi.messages, ch.ethz.iks.r_osgi.channels, ch.ethz.iks.r_osgi
+Implementation-Version: 1.0.0.RC1
+Import-Package: org.osgi.framework,org.osgi.util.tracker,org.osgi.service.log,org.osgi.service.event
+Built-By: rjan
+Bundle-Description: R-OSGi Remote Service
+Specification-Title: R-OSGi Project
+Bundle-Classpath: asm-3.0.jar,
+ remote-1.0.0.RC2.jar
+DynamicImport-Package: *
+Created-By: Apache Maven
+Implementation-Vendor: IKS, ETH Zurich
+Implementation-Title: remote
+Specification-Vendor: IKS, ETH Zurich
+Build-Jdk: 1.6.0_03
+Extension-Name: remote
+Archiver-Version: Plexus Archiver
+Provide-Package: ch.ethz.iks.r_osgi,
+ ch.ethz.iks.r_osgi.channels,
+ ch.ethz.iks.r_osgi.impl,
+ ch.ethz.iks.r_osgi.messages,
+ ch.ethz.iks.r_osgi.service_discovery,
+ ch.ethz.iks.r_osgi.streams,
+ ch.ethz.iks.r_osgi.types,
+ ch.ethz.iks.util,
+ org.objectweb.asm,
+ org.objectweb.asm.signature

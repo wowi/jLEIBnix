@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-Name: jslp-osgi
+Bundle-SymbolicName: ch.ethz.iks.slp
+Bundle-Version: 1.0.0.RC2
+Bundle-Activator: ch.ethz.iks.slp.impl.Activator
+Bundle-Vendor: Jan S. Rellermeyer, IKS, ETH Zurich
+Export-Package: ch.ethz.iks.slp
+Import-Package: org.osgi.framework,org.osgi.service.log
+Bundle-Classpath: jslp-osgi-1.0.0.RC2.jar
+Build-Jdk: 1.6.0_03
+Implementation-Version: 1.0.0.RC2
+Created-By: Apache Maven
+Bundle-Description: jSLP, the pure Java Service Location Protocol implementation
+Archiver-Version: Plexus Archiver
+Implementation-Vendor: IKS, ETH Zurich
+Implementation-Title: jslp-osgi
+Built-By: rjan
+Specification-Vendor: IKS, ETH Zurich
+Extension-Name: jslp-osgi
