@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="libs/calimero-2.0a3.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/quartz-1.4.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/commons-collections-3.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/smallsql.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.pde.core.requiredPlugins"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Network Plug-in
+Bundle-SymbolicName: org.leibnix.network
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.network.Activator
+Import-Package: org.leibnix.server.osgi,
+ org.osgi.framework,
+ org.osgi.service.device
+Export-Package: org.leibnix.network
+Require-Bundle: org.leibnix.core;bundle-version="1.0.0"
