@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eib Plug-in
+Bundle-SymbolicName: org.leibnix.admin.network.eib.ui;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.admin.network.eib.ui.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.leibnix.admin.core,
+ org.eclipse.jface
+Eclipse-LazyStart: true

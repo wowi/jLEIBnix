@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.leibnix.admin.core.ui.devices">
+      <device
+            Category="Other"
+            deviceClass="org.leibnix.admin.clocktimer.ui.ClocktimerDevice"
+            interface="org.leibnix.device.clocktimer.interfaces.IClockTimer"
+            name="Clocktimer"
+            type="Universal"></device>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            class="org.leibnix.admin.clocktimer.ui.internal.wizard.NewTimesetWizard"
+            hasPages="true"
+            id="org.leibnix.admin.clocktimer.ui.NewTimeset"
+            name="New Timeset">
+         <selection
+               class="org.leibnix.admin.clocktimer.ui.ClocktimerDevice">
+         </selection>
+      </wizard>
+   </extension>
+   <extension
+         point="org.eclipse.ui.popupMenus">
+      <objectContribution
+            id="org.leibnix.admin.clocktimer.ui.Clocktime"
+            objectClass="org.leibnix.admin.clocktimer.ui.ClocktimerDevice">
+         <action
+               class="org.leibnix.admin.clocktimer.ui.internal.actions.NewTimerset"
+               id="org.leibnix.admin.clocktimer.ui.NewTimerset"
+               label="New Timer"
+               tooltip="Add a new Timeset">
+         </action>
+         <action
+               class="org.leibnix.admin.clocktimer.ui.internal.actions.ClearEventList"
+               id="org.leibnix.admin.clocktimer.ui.ClearEventList"
+               label="Clear Timer List"
+               tooltip="Clear Timer List">
+         </action>
+      </objectContribution>
+      <objectContribution
+            id="org.leibnix.admin.clocktimer.ui.objectContribution1"
+            objectClass="org.leibnix.admin.clocktimer.ui.internal.ClockEventWrapper">
+         <action
+               class="org.leibnix.admin.clocktimer.ui.internal.actions.RemoveTimer"
+               id="org.leibnix.admin.clocktimer.ui.RemoveTimer"
+               label="Remove Timer"
+               tooltip="Remove Timer">
+         </action>
+         <action
+               class="org.leibnix.admin.clocktimer.ui.internal.actions.EditTimer"
+               id="org.leibnix.admin.clocktimer.ui.EditTimer"
+               label="Edit Timer"
+               tooltip="Edit Timer">
+         </action>
+      </objectContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <navigatorContent
+            activeByDefault="true"
+            contentProvider="org.leibnix.admin.clocktimer.ui.internal.ClocktimerContentProvider"
+            id="org.leibnix.admin.clocktimer.ui.navigatorContent"
+            labelProvider="org.leibnix.admin.clocktimer.ui.internal.ClocktimerLabelProvider"
+            name="Clocktimer"
+            priority="high">
+         <triggerPoints>
+            <or>
+               <and>
+	               <instanceof value="org.leibnix.admin.clocktimer.ui.ClocktimerDevice"/>
+	            </and>
+				<instanceof value="org.eclipse.ui.examples.navigator.PropertiesTreeData"/>
+            </or>
+         </triggerPoints>
+         <possibleChildren>
+            <instanceof
+                  value="org.leibnix.admin.clocktimer.ui.Object1">
+            </instanceof>
+         </possibleChildren>
+      </navigatorContent>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.navigator.viewer">
+      <viewerContentBinding viewerId="org.leibnix.admin.core.ui.devices">
+         <includes>
+            <contentExtension pattern="org.leibnix.admin.clocktimer.ui.navigatorContent"/>
+         </includes>
+      </viewerContentBinding>
+   </extension>
+
+</plugin>

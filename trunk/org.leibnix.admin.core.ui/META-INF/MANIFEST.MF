@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: org.leibnix.admin.core.ui;singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.admin.core.ui.Activator
+Bundle-Vendor: LEIBnix.org
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.navigator,
+ org.eclipse.ui.navigator.resources,
+ org.leibnix.admin.core,
+ org.eclipse.core.resources;bundle-version="3.4.0"
+Eclipse-LazyStart: true
+Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
+ org.leibnix.admin.core.ui,
+ org.leibnix.admin.core.ui.internal
+Bundle-ClassPath: lib/nebula_cdatetime_0.9.0.jar,
+ .

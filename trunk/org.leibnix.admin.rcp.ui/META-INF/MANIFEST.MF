@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: org.leibnix.admin.rcp.ui; singleton:=true
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.admin.rcp.ui.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ ch.ethz.iks.slp,
+ org.leibnix.admin.core.ui,
+ org.eclipse.core.resources,
+ ch.ethz.iks.r_osgi.remote
+Eclipse-LazyStart: true
