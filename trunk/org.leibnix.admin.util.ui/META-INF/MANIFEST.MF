@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ui Plug-in
+Bundle-SymbolicName: org.leibnix.admin.util.ui
+Bundle-Version: 1.0.0
+Bundle-Vendor: Leibnix.org
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Require-Bundle: org.eclipse.ui;bundle-version="3.4.0"
+Bundle-ClassPath: lib/nebula_cdatetime_0.9.0.jar,
+ .
+Export-Package: org.leibnix.admin.util.ui,
+ org.leibnix.admin.util.ui.internal.wizard.page,
+ org.leibnix.admin.util.ui.internal.wizard.page.control
