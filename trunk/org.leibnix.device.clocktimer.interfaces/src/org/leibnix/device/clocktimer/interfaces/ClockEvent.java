@@ -5,15 +5,15 @@ import java.io.Serializable;
 import org.leibnix.core.IMessage;
 
 public class ClockEvent implements Serializable {
-	public final static int TYPE_CRON=1;
-	public final static int TYPE_ONETIME=2;
-	
+	public final static int TYPE_CRON = 1;
+	public final static int TYPE_ONETIME = 2;
+
 	private String mKey;
 	private String mName;
 	private int mType = TYPE_CRON;
 	private String mExpresss = null;
 	private IMessage mMessage = null;
-	
+
 	public String getName() {
 		return mName;
 	}
@@ -54,4 +54,9 @@ public class ClockEvent implements Serializable {
 		return mKey;
 	}
 
+	public boolean isCron() {
+		if (getType() == TYPE_CRON)
+			return true;
+		return false;
+	}
 }

@@ -14,7 +14,6 @@ public class Worker extends Thread implements Job {
 
 	IMessageBus mEMB;
 
-	@Override
 	public void execute(JobExecutionContext pContext)
 			throws JobExecutionException {
 		System.out.println ("Execute Job: " + pContext.getJobDetail().getName());

@@ -134,7 +134,6 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 
 	}
 
-	@Override
 	public boolean addEvent(ClockEvent pEvent) {
 		// System.out.println("add new Event: " + pEvent.getName());
 		// mEventList.add(pEvent);
@@ -153,7 +152,7 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		HashMap map = new HashMap();
 		map.put("ID", pEvent.getName());
 		map.put("KEY", UUID.randomUUID());
-		map.put("TYPE", pEvent.getType());
+		map.put("TYPE", new Integer (pEvent.getType()));
 		map.put("CONFIG_STRING", pEvent.getExpresss());
 		map.put("TARGET_ID", String.valueOf(pEvent.getMessage().getDestination()));
 		map.put("VALUE", pEvent.getMessage().getValue().getValueAsString());
@@ -164,19 +163,16 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		return false;
 	}
 
-	@Override
 	public void noDriverFound() {
 		// TODO Auto-generated method stub
 
 	}
 
-	@Override
 	public List getEvents() {
 		System.out.println("GetEvents: " + mEventList.size());
 		return mEventList;
 	}
 
-	@Override
 	public boolean clearEventList() {
 		// this is the hint for R-OSGi that the service
 		// is made available for remote access
@@ -206,7 +202,6 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		configManager.newConfigSet("LEIBNIX_CLOCKTIMER", "KEY,ID String, TYPE int, CONFIG_STRING String, TARGET_ID String, VALUE String");
 	}
 
-	@Override
 	public boolean removeEvent(ClockEvent pEvent) {
 		ServiceReference sr = mBC
 				.getServiceReference(IConfigurationManager.class.getName());
@@ -223,7 +218,6 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		return false;
 	}
 
-	@Override
 	public void updateEvent(ClockEvent event) {
 		// TODO Auto-generated method stub
 		
