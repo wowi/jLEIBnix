@@ -54,7 +54,8 @@ public class DeviceManager {
 				.getServiceReference(RemoteOSGiService.class.getName());
 		if (ref != null) {
 			RemoteOSGiService rs = (RemoteOSGiService) context.getService(ref);
-			RemoteServiceReference[] serviceURLs = rs.connect(new URI("r-osgi://localhost:9278")); // FIXME use remote host from preferences
+//			RemoteServiceReference[] serviceURLs = rs.connect(new URI("r-osgi://localhost:9278")); // FIXME use remote host from preferences
+			RemoteServiceReference[] serviceURLs = rs.connect(new URI("r-osgi://localhost:9876")); // FIXME use remote host from preferences
 
 			for (RemoteServiceReference service : serviceURLs) {
 				System.out.println ("Interfaces: " + service.getServiceInterfaces());

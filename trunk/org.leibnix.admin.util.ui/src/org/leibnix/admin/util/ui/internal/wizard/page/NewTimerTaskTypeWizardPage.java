@@ -28,6 +28,8 @@ public class NewTimerTaskTypeWizardPage extends WizardPage {
 			return ((NewTimesetWizard)this.getWizard()).mDaylyPage;
 		} else if (mType==2) {
 			return ((NewTimesetWizard)this.getWizard()).mWeeklyPage;
+		} else if (mType==3) {
+			return ((NewTimesetWizard)this.getWizard()).mOneTimePage;
 		}
 		return super.getNextPage();
 	}

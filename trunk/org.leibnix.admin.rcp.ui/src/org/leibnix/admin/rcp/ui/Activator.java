@@ -47,9 +47,9 @@ public class Activator extends AbstractUIPlugin {
 				bundle.start();
 			} else if ("ch.ethz.iks.r_osgi.remote".equals(bundle.getSymbolicName())) {
 				r_osgi=bundle;
-//			} else if ("org.leibnix.device.clocktimer.interfaces".equals(bundle
-//					.getSymbolicName())) {
-//				bundle.start();
+			} else if ("org.leibnix.device.clocktimer.interfaces".equals(bundle
+					.getSymbolicName())) {
+				bundle.start();
 			}
 		}
 		if (r_osgi != null) {

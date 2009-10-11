@@ -3,6 +3,7 @@ package org.leibnix.admin.util.ui;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.wizard.Wizard;
 import org.leibnix.admin.util.ui.internal.wizard.page.NewTimerTaskDaylyWizardPage;
+import org.leibnix.admin.util.ui.internal.wizard.page.NewTimerTaskOneTimeWizardPage;
 import org.leibnix.admin.util.ui.internal.wizard.page.NewTimerTaskTypeWizardPage;
 import org.leibnix.admin.util.ui.internal.wizard.page.NewTimerTaskWeeklyWizardPage;
 
@@ -11,6 +12,7 @@ public class NewTimesetWizard extends Wizard {
 	public NewTimerTaskTypeWizardPage mIntroPage;
 	public NewTimerTaskWeeklyWizardPage mWeeklyPage;
 	public NewTimerTaskDaylyWizardPage mDaylyPage;
+	public NewTimerTaskOneTimeWizardPage mOneTimePage;
 	private String mExpression;
 	private boolean mIsCron;
 	private String mName;
@@ -37,6 +39,8 @@ public class NewTimesetWizard extends Wizard {
 		addPage(mDaylyPage);
 		mWeeklyPage = new NewTimerTaskWeeklyWizardPage("Uhrzeit und Tag");
 		addPage(mWeeklyPage);
+		mOneTimePage = new NewTimerTaskOneTimeWizardPage("Uhrzeit und Tag");
+		addPage(mOneTimePage);
 		if (mIsCron) {
 			mIntroPage.mType = 2;
 			mIntroPage.mId = mName;

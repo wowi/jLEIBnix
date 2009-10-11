@@ -83,6 +83,7 @@ public class IntroPageControl extends Composite {
 				SWT.NORMAL));
 		radioButtondayly = new Button(composite1, SWT.RADIO);
 		radioButtondayly.setText("Täglich");
+		radioButtondayly.setEnabled(true);
 		radioButtondayly.addSelectionListener(new SelectionAdapter() {
 
 			public void widgetSelected(SelectionEvent e) {
@@ -109,7 +110,13 @@ public class IntroPageControl extends Composite {
 		radioButtonmonthly.setEnabled(false);
 		radioButtonOnce = new Button(composite1, SWT.RADIO);
 		radioButtonOnce.setText("Einmalig");
-		radioButtonOnce.setEnabled(false);
+		radioButtonOnce.setEnabled(true);
+		radioButtonOnce
+				.addSelectionListener(new org.eclipse.swt.events.SelectionAdapter() {
+					public void widgetSelected(org.eclipse.swt.events.SelectionEvent e) {
+						mPage.mType = 3;
+					}
+				});
 	}
 
 }
