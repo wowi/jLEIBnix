@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.pde.ui.EquinoxLauncher">
+<booleanAttribute key="append.args" value="true"/>
+<booleanAttribute key="automaticAdd" value="false"/>
+<booleanAttribute key="automaticValidate" value="false"/>
+<stringAttribute key="bootstrap" value=""/>
+<stringAttribute key="checked" value="[NONE]"/>
+<booleanAttribute key="clearConfig" value="false"/>
+<stringAttribute key="configLocation" value="${workspace_loc}/.metadata/.plugins/org.eclipse.pde.core/jLeibnix (Equinox)"/>
+<booleanAttribute key="default_auto_start" value="true"/>
+<intAttribute key="default_start_level" value="4"/>
+<booleanAttribute key="includeOptional" value="true"/>
+<booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -console"/>
+<stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true -Dosgi.noShutdown=true"/>
+<stringAttribute key="org.ops4j.pax.cursor.logLevel" value="INFO"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwrite" value="false"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwriteSystemBundles" value="false"/>
+<booleanAttribute key="org.ops4j.pax.cursor.overwriteUserBundles" value="false"/>
+<listAttribute key="org.ops4j.pax.cursor.runArguments">
+<listEntry value="--overwrite=false"/>
+<listEntry value="--overwriteUserBundles=false"/>
+<listEntry value="--overwriteSystemBundles=false"/>
+<listEntry value="--log=INFO"/>
+</listAttribute>
+<stringAttribute key="pde.version" value="3.3"/>
+<booleanAttribute key="show_selected_only" value="false"/>
+<stringAttribute key="target_bundles" value="org.eclipse.osgi@:,org.eclipse.osgi.services@default:default,org.eclipse.equinox.device@default:default,javax.servlet@default:default"/>
+<booleanAttribute key="tracing" value="false"/>
+<booleanAttribute key="useDefaultConfigArea" value="true"/>
+<stringAttribute key="workspace_bundles" value="org.leibnix.device.clocktimer@5:default,org.leibnix.network@default:default,org.leibnix.libs@default:default,ch.ethz.iks.r_osgi.remote@default:default,org.leibnix.core@default:default,org.knopflerfish.bundle.device@default:default,org.leibnix.network.eibnetip@default:default,org.leibnix.configuration@default:default,org.leibnix.device.clocktimer.interfaces@4:default,org.leibnix.server.osgi@default:default,org.leibnix.emb.core@default:default,org.knopflerfish.bundle.commons-logging@default:default,ch.ethz.iks.slp@default:default"/>
+</launchConfiguration>
