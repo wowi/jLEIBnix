@@ -8,5 +8,6 @@ public interface IConfigurationManager {
 	public void newConfigSet (String pConfigId, String pConfigDescr);
 	public void destroyConfigSet(String string);
 	public void insertConfigSet (IConfigSet pConfigSet);
-	public void deleteConfigSetItems (IConfigSet pConfigSet);
+	public boolean deleteConfigSetItems (IConfigSet pConfigSet);
+	public void rereadConigSet(IConfigSet newConfigSet);
 }

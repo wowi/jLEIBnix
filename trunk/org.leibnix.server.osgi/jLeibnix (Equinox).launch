@@ -13,7 +13,7 @@
 <booleanAttribute key="org.eclipse.debug.core.appendEnvironmentVariables" value="true"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -console"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true -Dosgi.noShutdown=true"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Declipse.ignoreApp=true -Dosgi.noShutdown=true -Dch.ethz.iks.r_osgi.port=9876"/>
 <stringAttribute key="org.ops4j.pax.cursor.logLevel" value="INFO"/>
 <booleanAttribute key="org.ops4j.pax.cursor.overwrite" value="false"/>
 <booleanAttribute key="org.ops4j.pax.cursor.overwriteSystemBundles" value="false"/>
@@ -26,8 +26,8 @@
 </listAttribute>
 <stringAttribute key="pde.version" value="3.3"/>
 <booleanAttribute key="show_selected_only" value="false"/>
-<stringAttribute key="target_bundles" value="org.eclipse.osgi@:,org.eclipse.osgi.services@default:default,org.eclipse.equinox.device@default:default,javax.servlet@default:default"/>
+<stringAttribute key="target_bundles" value="javax.servlet@default:default,org.eclipse.osgi.services@default:default,org.eclipse.osgi@-1:true"/>
 <booleanAttribute key="tracing" value="false"/>
 <booleanAttribute key="useDefaultConfigArea" value="true"/>
-<stringAttribute key="workspace_bundles" value="org.leibnix.device.clocktimer@5:default,org.leibnix.network@default:default,org.leibnix.libs@default:default,ch.ethz.iks.r_osgi.remote@default:default,org.leibnix.core@default:default,org.knopflerfish.bundle.device@default:default,org.leibnix.network.eibnetip@default:default,org.leibnix.configuration@default:default,org.leibnix.device.clocktimer.interfaces@4:default,org.leibnix.server.osgi@default:default,org.leibnix.emb.core@default:default,org.knopflerfish.bundle.commons-logging@default:default,ch.ethz.iks.slp@default:default"/>
+<stringAttribute key="workspace_bundles" value="org.leibnix.configuration@default:default,org.leibnix.device.clocktimer.interfaces@4:default,org.knopflerfish.bundle.commons-logging@default:default,org.leibnix.network.eibnetip@default:default,org.leibnix.core@default:default,org.leibnix.device.clocktimer@5:default,org.leibnix.emb.core@default:default,org.leibnix.server.osgi@default:default,org.leibnix.network@default:default,org.leibnix.libs@default:default,ch.ethz.iks.slp@default:default,ch.ethz.iks.r_osgi.remote@default:default,org.knopflerfish.bundle.device@default:default"/>
 </launchConfiguration>

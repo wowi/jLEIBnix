@@ -7,6 +7,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionDelegate;
 import org.leibnix.admin.clocktimer.ui.internal.ClockEventWrapper;
+import org.leibnix.admin.core.ui.views.NodeView;
 
 public class RemoveTimer extends ActionDelegate implements IObjectActionDelegate  {
 
@@ -18,6 +19,9 @@ public class RemoveTimer extends ActionDelegate implements IObjectActionDelegate
 		if (mSelection.getFirstElement() instanceof ClockEventWrapper) {
 			ClockEventWrapper wrapper = (ClockEventWrapper) mSelection.getFirstElement();
 			wrapper.getDevice().getRemoteClockService().removeEvent (wrapper.getEvent());
+			if (mPart instanceof NodeView) {
+				((NodeView)mPart).getViewer().refresh(wrapper.getDevice(),true);				
+			}
 		}
 	}
 	

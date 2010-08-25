@@ -9,7 +9,9 @@ Bundle-ClassPath: .,
  libs/smallsql.jar,
  libs/commons-collections-3.1.jar,
  libs/quartz-1.4.5.jar,
- libs/calimero-2.0a3.jar
+ libs/calimero-2.0a3.jar,
+ libs/CalimeroRXTXAdapter.jar,
+ libs/RXTXcomm.jar
 Export-Package: org.apache.commons.collections,
  org.apache.commons.collections.bag,
  org.apache.commons.collections.bidimap,

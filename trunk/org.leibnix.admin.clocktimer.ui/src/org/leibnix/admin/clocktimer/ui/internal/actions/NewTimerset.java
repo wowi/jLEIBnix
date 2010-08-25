@@ -8,6 +8,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionDelegate;
 import org.leibnix.admin.clocktimer.ui.ClocktimerDevice;
+import org.leibnix.admin.core.ui.views.NodeView;
 import org.leibnix.admin.util.ui.NewTimesetWizard;
 import org.leibnix.core.BooleanValue;
 import org.leibnix.core.IMessage;
@@ -39,10 +40,14 @@ public class NewTimerset extends ActionDelegate implements
 				ClockEvent event = new ClockEvent();
 				fillEvent(wizard, event);
 				event.setType(ClockEvent.TYPE_CRON);
-				IMessage msg = new Message(new Target("1/0/2", 0), null,
+				IMessage msg = new Message(new Target("1/0/2", "TARGET_TYPE_EIB"), null,
 						new BooleanValue(true));
 				event.setMessage(msg);
 				device.getRemoteClockService().addEvent(event);
+				if (mPart instanceof NodeView) {
+					((NodeView)mPart).getViewer().refresh(device,true);				
+				}
+
 			}
 		}
 	}

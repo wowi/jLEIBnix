@@ -1,8 +1,10 @@
 package org.leibnix.emb.core;
 
+import org.leibnix.configuration.IConfigurationManager;
 import org.leibnix.emb.core.internal.MessageBusImpl;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
 import org.osgi.framework.ServiceRegistration;
 
 public class Activator implements BundleActivator {
@@ -10,22 +12,42 @@ public class Activator implements BundleActivator {
 	private BundleContext bc;
 	private ServiceRegistration embService;
 
-	private static final String[] embClasses = new String[] {
-		IMessageBus.class.getName() };
+	private static final String[] embClasses = new String[] { IMessageBus.class
+			.getName() };
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#start(org.osgi.framework.BundleContext
+	 * )
 	 */
 	public void start(BundleContext context) throws Exception {
 		this.bc = context;
-		IMessageBus emb = new MessageBusImpl(context);
+
+		// get Configuration Manager Service
+		ServiceReference sr = context
+				.getServiceReference(IConfigurationManager.class.getName());
+		IConfigurationManager configManager = (IConfigurationManager) context
+				.getService(sr);
+
+		// create Device Manager
+		configManager.destroyConfigSet("LEIBNIX_DEVICE");
+		configManager.destroyConfigSet("LEIBNIX_DEVICE_MESSAGE_DESCRIPTION");
+		DeviceManager deviceManager = new DeviceManager(configManager);
+		deviceManager.createConfigSet();
+
+		MessageBusImpl emb = new MessageBusImpl(context);
+		emb.setDeviceManager (deviceManager);
 		embService = bc.registerService(embClasses, emb, null);
+
 	}
 
 	/*
 	 * (non-Javadoc)
-	 * @see org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
+	 * 
+	 * @see
+	 * org.osgi.framework.BundleActivator#stop(org.osgi.framework.BundleContext)
 	 */
 	public void stop(BundleContext context) throws Exception {
 	}

@@ -13,4 +13,3 @@ Require-Bundle: org.leibnix.server.osgi,
  org.leibnix.configuration,
  org.leibnix.device.clocktimer.interfaces,
  org.leibnix.core;bundle-version="1.0.0"
-Bundle-RequiredExecutionEnvironment: CDC-1.1/Foundation-1.1

@@ -34,7 +34,7 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 
 	BundleContext mBC;
 	private Vector mEventList = new Vector();
-	Scheduler mScheduler=null;
+	Scheduler mScheduler = null;
 
 	public ClockTimerImpl(BundleContext context, IConfigSet configSet) {
 		mBC = context;
@@ -61,24 +61,36 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 				expression = configSet.getString("CONFIG_STRING");
 				value = configSet.getString("VALUE");
 				key = configSet.getString("KEY");
-				ClockEvent event = addTimer(mScheduler, name, key, type, expression, new Target(target, 0),
-						new BooleanValue(value));
+				System.out.println("key: " + key);
+				ClockEvent event = addTimer(mScheduler, name, key, type,
+						expression, new Target(target, "TARGET_TYPE_EIB"), new BooleanValue(
+								value));
 			}
-		} catch (SchedulerException e) {
+		} catch (SchedulerException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (ParseException e) {
+		}
+
+	}
+	
+	private void removeTimer (Scheduler sched, String pJobName) {
+		try {
+			sched.deleteJob(pJobName, Scheduler.DEFAULT_GROUP);
+		} catch (SchedulerException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	private ClockEvent addTimer(Scheduler sched, String name, String key, int type,
-			String expression, ITarget target, IValue value)
+	private ClockEvent addTimer(Scheduler sched, String name, String key,
+			int type, String expression, ITarget target, IValue value)
 			throws ParseException, SchedulerException {
 		System.out.println("Add Timer: " + name);
-		JobDetail jobDetail = new JobDetail(name,
-				Scheduler.DEFAULT_GROUP, Worker.class);
+		JobDetail jobDetail = new JobDetail(name, Scheduler.DEFAULT_GROUP,
+				Worker.class);
 		ServiceReference sr = mBC.getServiceReference(IMessageBus.class
 				.getName());
 		IMessageBus emb = (IMessageBus) mBC.getService(sr);
@@ -89,30 +101,40 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		// Trigger trigger = TriggerUtils.makeHourlyTrigger(); // fire
 		// every
 		// hour
-		Trigger trigger = new CronTrigger(name + "_TRIGGER",
+		Trigger trigger = null;
+		try {
+		trigger = new CronTrigger(name + "_TRIGGER",
 				Scheduler.DEFAULT_GROUP, expression);
+		} catch (IllegalArgumentException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();			
+		}
 		// long ts = System.currentTimeMillis() + 4000; // get time a
 		// few
 		// SimpleTrigger trigger = new SimpleTrigger("trigg1",
 		// Scheduler.DEFAULT_GROUP,
 		// new Date(ts), null, 0, 0);
-
-		sched.scheduleJob(jobDetail, trigger);
-		System.out
-				.println("Anzahl Trigger: "
-						+ sched
-								.getTriggerNames(Scheduler.DEFAULT_GROUP).length);
 		ClockEvent event = new ClockEvent();
+		if (trigger != null) {
+			sched.scheduleJob(jobDetail, trigger);
+			System.out.println("Anzahl Trigger: "
+				+ sched.getTriggerNames(Scheduler.DEFAULT_GROUP).length);
+		} else {
+			event.setStatus (ClockEvent.STATUS_ERROR);
+		}
+		event = new ClockEvent();
 		event.setName(name);
 		event.setKey(key);
 		event.setExpresss(expression);
 		mEventList.add(event);
 		return event;
 	}
-	
+
 	private void addTimer(ClockEvent event) {
 		try {
-			addTimer(mScheduler, event.getName(), null, event.getType(), event.getExpresss(), event.getMessage().getDestination(), event.getMessage().getValue());
+			addTimer(mScheduler, event.getName(), null, event.getType(), event
+					.getExpresss(), event.getMessage().getDestination(), event
+					.getMessage().getValue());
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -120,9 +142,8 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-	}
 
+	}
 
 	public ITarget[] getTargetObjects() {
 		// TODO Auto-generated method stub
@@ -152,14 +173,16 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		HashMap map = new HashMap();
 		map.put("ID", pEvent.getName());
 		map.put("KEY", UUID.randomUUID());
-		map.put("TYPE", new Integer (pEvent.getType()));
+		map.put("TYPE", new Integer(pEvent.getType()));
 		map.put("CONFIG_STRING", pEvent.getExpresss());
-		map.put("TARGET_ID", String.valueOf(pEvent.getMessage().getDestination()));
+		map.put("TARGET_ID", String.valueOf(pEvent.getMessage()
+				.getDestination()));
 		map.put("VALUE", pEvent.getMessage().getValue().getValueAsString());
 		newConfigSet.add(map);
 		configManager.insertConfigSet(newConfigSet);
-
-		addTimer (pEvent);
+		configManager.rereadConigSet (newConfigSet);
+		// pEvent.setKey()
+		addTimer(pEvent);
 		return false;
 	}
 
@@ -187,19 +210,21 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 			configSet.next();
 			String id = configSet.getString("ID");
 			try {
-				mScheduler.deleteJob(id,Scheduler.DEFAULT_GROUP);
+				mScheduler.deleteJob(id, Scheduler.DEFAULT_GROUP);
 			} catch (SchedulerException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		configManager.destroyConfigSet ("LEIBNIX_CLOCKTIMER");
-		createConfigSet (configManager);
+		configManager.destroyConfigSet("LEIBNIX_CLOCKTIMER");
+		createConfigSet(configManager);
 		return false;
 	}
-	
-	public static void createConfigSet (IConfigurationManager configManager) {
-		configManager.newConfigSet("LEIBNIX_CLOCKTIMER", "KEY,ID String, TYPE int, CONFIG_STRING String, TARGET_ID String, VALUE String");
+
+	public static void createConfigSet(IConfigurationManager configManager) {
+		configManager
+				.newConfigSet("LEIBNIX_CLOCKTIMER",
+						"KEY,ID String, TYPE int, CONFIG_STRING String, TARGET_ID String, VALUE String");
 	}
 
 	public boolean removeEvent(ClockEvent pEvent) {
@@ -213,14 +238,17 @@ public class ClockTimerImpl implements IClockTimer, IDevice {
 		HashMap map = new HashMap();
 		map.put("KEY", pEvent.getKey());
 		configSet.add(map);
-		
-		configManager.deleteConfigSetItems(configSet);
+
+		if (configManager.deleteConfigSetItems(configSet)) {
+			mEventList.remove(pEvent);
+			removeTimer (mScheduler, pEvent.getName());
+		}
 		return false;
 	}
 
 	public void updateEvent(ClockEvent event) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

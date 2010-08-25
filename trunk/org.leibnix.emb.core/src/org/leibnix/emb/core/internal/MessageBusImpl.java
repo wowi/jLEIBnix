@@ -1,5 +1,8 @@
 package org.leibnix.emb.core.internal;
 
+import java.util.Vector;
+
+import org.leibnix.emb.core.DeviceManager;
 import org.leibnix.emb.core.IMessageBus;
 import org.leibnix.network.INetworkDevice;
 import org.leibnix.server.osgi.IDevice;
@@ -24,6 +27,8 @@ public class MessageBusImpl implements IMessageBus {
 	private ServiceTracker mTracker;
 
 	private Filter filter;
+
+	private DeviceManager mDeviceManager;
 
 	public MessageBusImpl(BundleContext context)
 			throws InvalidSyntaxException {
@@ -57,6 +62,14 @@ public class MessageBusImpl implements IMessageBus {
 
 	public void addDevice(ITarget[] pTargets, IDevice idev) {
 		System.out.println ("New device added");
+	}
+
+	public void setDeviceManager(DeviceManager pDeviceManager) {
+		mDeviceManager = pDeviceManager;		
+	}
+	
+	public Vector getDevices () {
+		return (mDeviceManager.getDevices ());
 	}
 
 	// public void newFrameReceived(FrameEvent e) {

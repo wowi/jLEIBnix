@@ -22,7 +22,10 @@ public class ClocktimerContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object getParent(Object element) {
-		// TODO Auto-generated method stub
+		if (element instanceof ClockEventWrapper) {
+			ClockEventWrapper event=(ClockEventWrapper) element;
+			return event.getDevice();
+		}
 		return null;
 	}
 

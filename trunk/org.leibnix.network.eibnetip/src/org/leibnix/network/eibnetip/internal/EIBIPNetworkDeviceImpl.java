@@ -19,6 +19,7 @@ import tuwien.auto.calimero.exception.KNXFormatException;
 import tuwien.auto.calimero.knxnetip.KNXnetIPConnection;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import tuwien.auto.calimero.link.KNXNetworkLink;
+import tuwien.auto.calimero.link.KNXNetworkLinkFT12;
 import tuwien.auto.calimero.link.KNXNetworkLinkIP;
 import tuwien.auto.calimero.link.medium.KNXMediumSettings;
 import tuwien.auto.calimero.link.medium.TPSettings;
@@ -30,6 +31,7 @@ import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 
 public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 
+	public static String TARGET_TYPE_EIB="TARGET_TYPE_EIB";
 	private KNXNetworkLink mKNXNetwokrLink;
 
 	@Override
@@ -42,15 +44,16 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 	public void connect() {
 		LogManager.getManager().addWriter(null, new ConsoleWriter(false));
 		try {
-			mKNXNetwokrLink = createLink("192.168.178.23",
-					KNXnetIPConnection.IP_PORT);
+//			mKNXNetwokrLink = createLink("192.168.178.23",
+//					KNXnetIPConnection.IP_PORT);
+			mKNXNetwokrLink = new KNXNetworkLinkFT12(Integer.parseInt("1"), new TPSettings(true));
 			testRead();
 		} catch (KNXException e) {
 			// TODO Auto-generated catch block
-			// e.printStackTrace();
-		} catch (UnknownHostException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			 e.printStackTrace();
+//		} catch (UnknownHostException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
 		}
 
 	}
@@ -129,8 +132,9 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 		while (send == false && retry >= 0) {
 			try {
 				if (mKNXNetwokrLink == null) {
-					mKNXNetwokrLink = createLink("192.168.178.23",
-							KNXnetIPConnection.IP_PORT);
+//					mKNXNetwokrLink = createLink("192.168.178.23",
+//							KNXnetIPConnection.IP_PORT);
+					mKNXNetwokrLink = new KNXNetworkLinkFT12(Integer.parseInt("1"), new TPSettings(true));
 				}
 				pc = writeToEIB(pTarget, pValue);
 				send = true;
@@ -142,9 +146,9 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 				retry--;
 				mKNXNetwokrLink = null;
 				lastException = e;
-			} catch (UnknownHostException e) {
-				e.printStackTrace();
-				lastException = e;
+//			} catch (UnknownHostException e) {
+//				e.printStackTrace();
+//				lastException = e;
 			} finally {
 				if (pc != null)
 					pc.detach();

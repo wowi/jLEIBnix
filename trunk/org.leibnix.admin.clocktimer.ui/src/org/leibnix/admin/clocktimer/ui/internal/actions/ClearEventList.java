@@ -8,6 +8,7 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.actions.ActionDelegate;
 import org.leibnix.admin.clocktimer.ui.ClocktimerDevice;
+import org.leibnix.admin.core.ui.views.NodeView;
 
 public class ClearEventList extends ActionDelegate implements
 		IObjectActionDelegate {
@@ -31,6 +32,9 @@ public class ClearEventList extends ActionDelegate implements
 		if (mSelection.getFirstElement() instanceof ClocktimerDevice) {
 			ClocktimerDevice clock = (ClocktimerDevice) mSelection.getFirstElement();
 			clock.getRemoteClockService().clearEventList();
+			if (mPart instanceof NodeView) {
+				((NodeView)mPart).getViewer().refresh(clock,true);				
+			}
 		}
 	}
 

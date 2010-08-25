@@ -205,4 +205,8 @@ public class NodeView extends ViewPart {
 	public void setFocus() {
 		viewer.getControl().setFocus();
 	}
+	
+	public TreeViewer getViewer () {
+		return viewer;
+	}
 }

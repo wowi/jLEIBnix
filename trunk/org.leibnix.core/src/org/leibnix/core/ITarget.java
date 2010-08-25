@@ -5,5 +5,7 @@ import java.io.Serializable;
 public interface ITarget extends Serializable {
 
 	public String getId();
+	
+	public String getType();
 
 }
