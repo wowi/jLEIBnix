@@ -1,18 +1,17 @@
 package org.leibnix.core;
 
 import java.io.Serializable;
-import java.util.Vector;
+import java.util.List;
 
-public class Device implements Serializable{
+public class Device implements IBusDevice, Serializable{
 	private String mId;
-	private String mType;
-	private Vector mSendMessageDescriptionList;
-	private Vector mReceiveMessageDescriptionList;
 	private boolean mTemplate;
+	private List mVariableList;
+	private String mNetworkType;
 
-	public Device (String pId, String pType, boolean pTemplate) {
+	public Device (String pId, String pNetworkType, boolean pTemplate) {
 		mId = pId;
-		mType = pType;
+		mNetworkType = pNetworkType;
 		mTemplate = pTemplate;
 	}
 	
@@ -33,21 +32,15 @@ public class Device implements Serializable{
 	/**
 	 * @return the mType
 	 */
-	public String getType() {
-		return mType;
+	public String getNetworkType() {
+		return mNetworkType;
 	}
 
 	/**
 	 * @param pType the mType to set
 	 */
-	public void setType(String pType) {
-		this.mType = pType;
+	public void setNetworkType(String pNetworkType) {
+		this.mNetworkType = pNetworkType;
 	}
 
-	public void addSendMessageDescription (MessageDescription pMessageDescription) {
-		mSendMessageDescriptionList.add(pMessageDescription);
-	}
-	public void addReceiveMessageDescription (MessageDescription pMessageDescription) {
-		mReceiveMessageDescriptionList.add(pMessageDescription);
-	}
 }

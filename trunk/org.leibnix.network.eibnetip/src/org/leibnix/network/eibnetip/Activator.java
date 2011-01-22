@@ -19,7 +19,7 @@ import org.osgi.util.tracker.ServiceTracker;
 
 public class Activator implements BundleActivator {
 
-	private BundleContext bc;
+	private static BundleContext bc;
 
 	ServiceTracker logTracker;
 
@@ -27,7 +27,7 @@ public class Activator implements BundleActivator {
 	private ServiceRegistration deviceService;
 
 	private static final String[] deviceClasses = new String[] {
-			Device.class.getName(), INetworkDevice.class.getName() };
+			Device.class.getName(), INetworkDevice.class.getName(), EIBIPNetworkDeviceImpl.class.getName() };
 
 	private static final String[] driverClasses = new String[] {
 			Driver.class.getName(), NetworkDriver.class.getName() };
@@ -80,5 +80,5 @@ public class Activator implements BundleActivator {
 	LogService getLog() {
 		return (LogService) logTracker.getService();
 	}
-
+	
 }

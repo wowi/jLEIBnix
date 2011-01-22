@@ -7,7 +7,8 @@ Bundle-Activator: org.leibnix.admin.core.Activator
 Require-Bundle: org.eclipse.core.runtime,
  ch.ethz.iks.r_osgi.remote,
  ch.ethz.iks.slp,
- org.leibnix.device.clocktimer.interfaces
+ org.leibnix.device.clocktimer.interfaces,
+ org.leibnix.repository.common;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Export-Package: org.leibnix.admin.core
 Import-Package: org.osgi.service.device;version="1.1.0"

@@ -8,9 +8,10 @@ Bundle-Vendor: LEIBnix.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.navigator,
- org.eclipse.ui.navigator.resources,
  org.leibnix.admin.core,
- org.eclipse.core.resources;bundle-version="3.4.0"
+ org.eclipse.core.resources,
+ ch.ethz.iks.r_osgi.remote;bundle-version="1.0.0",
+ org.leibnix.repository.common;bundle-version="1.0.0"
 Eclipse-LazyStart: true
 Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.leibnix.admin.core.ui,

@@ -27,6 +27,7 @@ import org.osgi.service.device.Driver;
 		System.out.println("Attach Network device");
 		System.out.println("try to connect ...");
 		device.connect();
+		device.initDevices();
 		return null;
 	}
 

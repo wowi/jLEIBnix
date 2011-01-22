@@ -1,11 +1,20 @@
 package org.leibnix.admin.core.ui.internal;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.leibnix.admin.core.DeviceManager;
 import org.leibnix.admin.core.IDevice;
 import org.leibnix.admin.core.INetwork;
 import org.leibnix.admin.core.NetworkManager;
+import org.leibnix.admin.core.RepositoryManager;
+import org.leibnix.repository.common.Module;
+import org.leibnix.repository.common.RepositorySite;
+
+import ch.ethz.iks.r_osgi.RemoteOSGiException;
 
 public class DeviceContentProvider implements ITreeContentProvider {
 
@@ -27,6 +36,20 @@ public class DeviceContentProvider implements ITreeContentProvider {
 			if (provider != null) {
 				return provider.getChildren(parentElement);
 			}
+		} else if (parentElement instanceof RepositorySite) {
+			RepositorySite site = (RepositorySite) parentElement;
+			try {
+				List<Module> modules = RepositoryManager.getInstance().getModules (site);
+				if (modules != null) {
+					return modules.toArray();
+				}
+			} catch (RemoteOSGiException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return ret;
 	}
@@ -45,10 +68,24 @@ public class DeviceContentProvider implements ITreeContentProvider {
 
 	@Override
 	public Object[] getElements(Object inputElement) {
+		// Get all Root Allements
+		ArrayList<Object>objects = new ArrayList<Object>(); 
 		if (!NetworkManager.getNetworks().isEmpty()) {
-			return (NetworkManager.getNetworkArray());
+			objects.addAll(NetworkManager.getNetworks().values());
 		}
-		return null;
+		try {
+			List<RepositorySite> repositorySites = RepositoryManager.getInstance().getRepositories();
+			if (repositorySites != null) {
+				objects.addAll(repositorySites);
+			}
+		} catch (RemoteOSGiException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return objects.toArray();
 //		return new String[] {"Devices", "Networks"};
 	}
 

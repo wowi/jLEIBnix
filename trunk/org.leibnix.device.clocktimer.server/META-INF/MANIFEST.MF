@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Clocktimer Plug-in
+Bundle-SymbolicName: org.leibnix.device.clocktimer.server
+Bundle-Version: 1.0.0
+Bundle-Activator: org.leibnix.device.clocktimer.Activator
+Import-Package: org.osgi.framework;version="1.3.0",
+ org.osgi.service.device;version="1.1.0"
+Require-Bundle: org.leibnix.server.osgi,
+ ch.ethz.iks.r_osgi.remote,
+ org.leibnix.emb.core,
+ org.leibnix.libs,
+ org.leibnix.configuration,
+ org.leibnix.device.clocktimer.interfaces,
+ org.leibnix.core;bundle-version="1.0.0"

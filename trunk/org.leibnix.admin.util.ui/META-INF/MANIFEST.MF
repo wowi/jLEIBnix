@@ -8,6 +8,11 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.eclipse.ui;bundle-version="3.4.0"
 Bundle-ClassPath: lib/nebula_cdatetime_0.9.0.jar,
  .
-Export-Package: org.leibnix.admin.util.ui,
- org.leibnix.admin.util.ui.internal.wizard.page,
- org.leibnix.admin.util.ui.internal.wizard.page.control
+Export-Package: doc,
+ doc.org.eclipse.swt.nebula.widgets.cdatetime,
+ doc.resources,
+ org.eclipse.swt.nebula.widgets.cdatetime,
+ org.leibnix.admin.util.ui,
+ org.leibnix.admin.util.ui.internal.icons;x-internal:=true,
+ org.leibnix.admin.util.ui.internal.wizard.page;x-internal:=true,
+ org.leibnix.admin.util.ui.internal.wizard.page.control;x-internal:=true

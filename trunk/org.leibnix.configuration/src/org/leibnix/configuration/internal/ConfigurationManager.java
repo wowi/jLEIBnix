@@ -42,11 +42,14 @@ public class ConfigurationManager implements IConfigurationManager {
 	}
 
 	@Override
-	public ConfigSet getConfigSet(String pConfigId) {
+	public ConfigSet getConfigSet(String pConfigId, String pFilter) {
 		ConfigSet configSet = null;
 		try {
 			if (tableExists(pConfigId)) {
 				String sql = "select * from " + pConfigId;
+				if (pFilter != null){
+					sql = sql + " where " + pFilter;
+				}
 				Statement st = mConnection.createStatement();
 				ResultSet rs = st.executeQuery(sql);
 				configSet = new ConfigSet(pConfigId);
@@ -61,6 +64,11 @@ public class ConfigurationManager implements IConfigurationManager {
 			e.printStackTrace();
 		}
 		return configSet;
+	}
+
+	@Override
+	public IConfigSet getConfigSet(String pConfigId) {
+		return getConfigSet(pConfigId, null);
 	}
 
 	private HashMap resultSetToHashMap(ResultSet pResultSet)
@@ -90,7 +98,7 @@ public class ConfigurationManager implements IConfigurationManager {
 	private Connection createConnection() throws SQLException {
 		// DriverManager.setLogStream( System.out );
 		new smallsql.database.SSDriver();
-		new sun.jdbc.odbc.JdbcOdbcDriver();
+//		new sun.jdbc.odbc.JdbcOdbcDriver();
 		return DriverManager.getConnection("jdbc:smallsql:c:\\MyDatabase"
 				+ "?locale=en;create=true");
 		// return DriverManager.getConnection("jdbc:odbc:mssql","sa","");

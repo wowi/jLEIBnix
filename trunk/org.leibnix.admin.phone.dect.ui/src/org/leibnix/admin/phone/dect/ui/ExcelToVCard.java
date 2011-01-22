@@ -27,7 +27,8 @@ public class ExcelToVCard {
 	 */
 	public static void main(String[] args) {
 		System.out.println("STart ExcelToVCard");
-		String filename = "C:/Daten/Diverse/Excel/telefonbuch_test.xls";
+//		String filename = "C:/Daten/Diverse/Excel/telefonbuch_test.xls";
+		String filename = "C:/Daten/Diverse/Telefonnummern u. Nummern/Telefonliste Hörer.xls";
 		try {
 			Workbook wb = new HSSFWorkbook(new FileInputStream(filename));
 			Sheet sheet = wb.getSheetAt(0);

@@ -1,13 +1,14 @@
 package org.leibnix.emb.core.internal;
 
-import java.util.Vector;
+import java.util.List;
 
+import org.leibnix.core.IBusDevice;
+import org.leibnix.core.IMessage;
+import org.leibnix.core.ITarget;
 import org.leibnix.emb.core.DeviceManager;
 import org.leibnix.emb.core.IMessageBus;
 import org.leibnix.network.INetworkDevice;
 import org.leibnix.server.osgi.IDevice;
-import org.leibnix.core.IMessage;
-import org.leibnix.core.ITarget;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.Filter;
 import org.osgi.framework.InvalidSyntaxException;
@@ -48,8 +49,7 @@ public class MessageBusImpl implements IMessageBus {
 	@Override
 	public void send(IMessage pMessage) {
 		System.out.println("Send Message: " + pMessage);
-		ServiceReference sr = mBC.getServiceReference(INetworkDevice.class
-				.getName());
+		ServiceReference sr = mBC.getServiceReference(pMessage.getDestination().getNetworkType());
 		INetworkDevice netDevice = (INetworkDevice) mBC.getService(sr);
 		netDevice.sendMessage(pMessage);
 	}
@@ -68,7 +68,7 @@ public class MessageBusImpl implements IMessageBus {
 		mDeviceManager = pDeviceManager;		
 	}
 	
-	public Vector getDevices () {
+	public List getDevices () {
 		return (mDeviceManager.getDevices ());
 	}
 

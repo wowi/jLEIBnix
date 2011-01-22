@@ -1,5 +1,9 @@
 package org.leibnix.emb.core;
 
+import java.util.HashMap;
+
+import org.leibnix.configuration.ConfigSetFactory;
+import org.leibnix.configuration.IConfigSet;
 import org.leibnix.configuration.IConfigurationManager;
 import org.leibnix.emb.core.internal.MessageBusImpl;
 import org.osgi.framework.BundleActivator;
@@ -31,11 +35,29 @@ public class Activator implements BundleActivator {
 		IConfigurationManager configManager = (IConfigurationManager) context
 				.getService(sr);
 
+		
 		// create Device Manager
-		configManager.destroyConfigSet("LEIBNIX_DEVICE");
-		configManager.destroyConfigSet("LEIBNIX_DEVICE_MESSAGE_DESCRIPTION");
-		DeviceManager deviceManager = new DeviceManager(configManager);
+		configManager.destroyConfigSet(DeviceManager.LEIBNIX_DEVICE);
+		configManager.destroyConfigSet("LEIBNIX_DEVICE_VARIABLE_DESCRIPTION");
+		DeviceManager deviceManager = DeviceManager.getInstance(configManager);
 		deviceManager.createConfigSet();
+		
+		// Dummy Data
+		IConfigSet newConfigSet = ConfigSetFactory
+				.newConfigSet(DeviceManager.LEIBNIX_DEVICE);
+		HashMap map = new HashMap();
+		map.put("ID", "Thermostat Arbeitszimmer");
+		map.put("NETWORK_TYPE", "NETWORK_TYPE_EIB");
+		newConfigSet.add(map);
+		map = new HashMap();
+		map.put("ID", "Thermostat Nicola");
+		map.put("NETWORK_TYPE", "NETWORK_TYPE_EIB");
+		newConfigSet.add(map);
+		map = new HashMap();
+		map.put("ID", "VDR-Server");
+		map.put("NETWORK_TYPE", "NETWORK_TYPE_LAN");
+		newConfigSet.add(map);
+		configManager.insertConfigSet(newConfigSet);
 
 		MessageBusImpl emb = new MessageBusImpl(context);
 		emb.setDeviceManager (deviceManager);

@@ -42,7 +42,9 @@ public class EditTimer extends ActionDelegate implements IObjectActionDelegate {
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
-		mSelection = (TreeSelection) selection;
+		if (selection instanceof TreeSelection) {
+			mSelection = (TreeSelection) selection;
+		}
 		super.selectionChanged(action, selection);
 	}
 

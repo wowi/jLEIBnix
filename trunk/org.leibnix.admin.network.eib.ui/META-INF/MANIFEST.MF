@@ -8,3 +8,5 @@ Require-Bundle: org.eclipse.core.runtime,
  org.leibnix.admin.core,
  org.eclipse.jface
 Eclipse-LazyStart: true
+Export-Package: org.leibnix.admin.network.eib.ui,
+ org.leibnix.admin.network.eib.ui.internal;x-internal:=true

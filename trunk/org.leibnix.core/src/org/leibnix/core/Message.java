@@ -3,21 +3,21 @@ package org.leibnix.core;
 
 public class Message implements IMessage {
 
-	private ITarget mDestination;
+	private IBusDevice mDestination;
 	private IValue mValue;
 
-	public Message (ITarget pDestination, ITarget pSource, IValue pValue) {
+	public Message (IBusDevice pDestination, IBusDevice pSource, IValue pValue) {
 		mDestination = pDestination;
 		mValue = pValue;
 	}
 
 	@Override
-	public ITarget getDestination() {
+	public IBusDevice getDestination() {
 		return mDestination;
 	}
 
 	@Override
-	public ITarget getSource() {
+	public IBusDevice getSource() {
 		// TODO Auto-generated method stub
 		return null;
 	}

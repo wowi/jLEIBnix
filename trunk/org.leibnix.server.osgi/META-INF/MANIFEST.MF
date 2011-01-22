@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Leibnix Core Plug-in
+Bundle-Name: Leibnix Server Core Plug-in
 Bundle-SymbolicName: org.leibnix.server.osgi
 Bundle-Version: 1.0.0
 Bundle-Activator: org.leibnix.server.osgi.Activator

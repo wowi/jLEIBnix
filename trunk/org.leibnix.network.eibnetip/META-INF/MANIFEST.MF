@@ -28,4 +28,7 @@ Import-Package: org.leibnix.network,
  tuwien.auto.calimero.serial,
  tuwien.auto.calimero.xml,
  tuwien.auto.calimero.xml.def
-Require-Bundle: org.leibnix.core;bundle-version="1.0.0"
+Require-Bundle: org.leibnix.core;bundle-version="1.0.0",
+ org.leibnix.configuration;bundle-version="1.0.0",
+ org.leibnix.emb.core;bundle-version="1.0.0",
+ org.leibnix.libs;bundle-version="1.0.0"

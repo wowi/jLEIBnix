@@ -3,35 +3,37 @@ package org.leibnix.network.eibnetip.internal;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.net.UnknownHostException;
-import java.util.Map;
+import java.util.List;
 
-import org.leibnix.network.INetworkDevice;
-import org.leibnix.server.osgi.INetworkListener;
+import org.leibnix.core.Device;
+import org.leibnix.core.IBusDevice;
 import org.leibnix.core.IMessage;
 import org.leibnix.core.ITarget;
 import org.leibnix.core.IValue;
+import org.leibnix.emb.core.DeviceManager;
+import org.leibnix.network.INetworkDevice;
+import org.leibnix.network.eibnetip.Activator;
+import org.leibnix.server.osgi.INetworkListener;
+import org.osgi.framework.BundleContext;
 
 import tuwien.auto.calimero.GroupAddress;
 import tuwien.auto.calimero.datapoint.Datapoint;
 import tuwien.auto.calimero.datapoint.StateDP;
 import tuwien.auto.calimero.exception.KNXException;
 import tuwien.auto.calimero.exception.KNXFormatException;
-import tuwien.auto.calimero.knxnetip.KNXnetIPConnection;
 import tuwien.auto.calimero.link.KNXLinkClosedException;
 import tuwien.auto.calimero.link.KNXNetworkLink;
 import tuwien.auto.calimero.link.KNXNetworkLinkFT12;
 import tuwien.auto.calimero.link.KNXNetworkLinkIP;
-import tuwien.auto.calimero.link.medium.KNXMediumSettings;
 import tuwien.auto.calimero.link.medium.TPSettings;
 import tuwien.auto.calimero.log.LogLevel;
-import tuwien.auto.calimero.log.LogManager;
 import tuwien.auto.calimero.log.LogStreamWriter;
 import tuwien.auto.calimero.process.ProcessCommunicator;
 import tuwien.auto.calimero.process.ProcessCommunicatorImpl;
 
 public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 
-	public static String TARGET_TYPE_EIB="TARGET_TYPE_EIB";
+	public static String NETWORK_TYPE_EIB = "NETWORK_TYPE_EIB";
 	private KNXNetworkLink mKNXNetwokrLink;
 
 	@Override
@@ -42,15 +44,19 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 
 	@Override
 	public void connect() {
-		LogManager.getManager().addWriter(null, new ConsoleWriter(false));
+//		LogManager.getManager().addWriter(null, new ConsoleWriter(false));
 		try {
-//			mKNXNetwokrLink = createLink("192.168.178.23",
-//					KNXnetIPConnection.IP_PORT);
-			mKNXNetwokrLink = new KNXNetworkLinkFT12(Integer.parseInt("1"), new TPSettings(true));
+			// KNX/IP Connection
+			// mKNXNetwokrLink = createLink("192.168.178.48",
+			// KNXnetIPConnection.IP_PORT);
+			//
+			// serial connection
+			mKNXNetwokrLink = new KNXNetworkLinkFT12(Integer.parseInt("1"),
+					new TPSettings(true));
 			testRead();
 		} catch (KNXException e) {
 			// TODO Auto-generated catch block
-			 e.printStackTrace();
+			e.printStackTrace();
 //		} catch (UnknownHostException e) {
 //			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -124,7 +130,7 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 
 	}
 
-	private void write(ITarget pTarget, IValue pValue) {
+	private void write(IBusDevice pDevice, IValue pValue) {
 		ProcessCommunicator pc = null;
 		Exception lastException = null;
 		int retry = 1;
@@ -132,11 +138,12 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 		while (send == false && retry >= 0) {
 			try {
 				if (mKNXNetwokrLink == null) {
-//					mKNXNetwokrLink = createLink("192.168.178.23",
-//							KNXnetIPConnection.IP_PORT);
-					mKNXNetwokrLink = new KNXNetworkLinkFT12(Integer.parseInt("1"), new TPSettings(true));
+					// mKNXNetwokrLink = createLink("192.168.178.23",
+					// KNXnetIPConnection.IP_PORT);
+					mKNXNetwokrLink = new KNXNetworkLinkFT12(
+							Integer.parseInt("1"), new TPSettings(true));
 				}
-				pc = writeToEIB(pTarget, pValue);
+				pc = writeToEIB(pDevice, pValue);
 				send = true;
 			} catch (KNXLinkClosedException e) {
 				retry--;
@@ -146,27 +153,27 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 				retry--;
 				mKNXNetwokrLink = null;
 				lastException = e;
-//			} catch (UnknownHostException e) {
-//				e.printStackTrace();
-//				lastException = e;
+				// } catch (UnknownHostException e) {
+				// e.printStackTrace();
+				// lastException = e;
 			} finally {
 				if (pc != null)
 					pc.detach();
 			}
 		}
 		if (send == false) {
-//			System.out.println ("Exception in Send: ");
-//			lastException.printStackTrace();
+			// System.out.println ("Exception in Send: ");
+			// lastException.printStackTrace();
 		}
 
 	}
 
-	private ProcessCommunicator writeToEIB(ITarget pTarget, IValue pValue)
+	private ProcessCommunicator writeToEIB(IBusDevice pDevice, IValue pValue)
 			throws KNXLinkClosedException, KNXFormatException, KNXException {
 		ProcessCommunicator pc;
 		pc = new ProcessCommunicatorImpl(mKNXNetwokrLink);
 		pc.setResponseTimeout(1000);
-		final GroupAddress main = new GroupAddress(pTarget.getId());
+		final GroupAddress main = new GroupAddress(pDevice.getId());
 		String dptID = typeToDptId(pValue.getType());
 		final Datapoint dp = new StateDP(main, "", 0, dptID);
 		pc.write(dp, pValue.getValueAsString());
@@ -183,6 +190,19 @@ public class EIBIPNetworkDeviceImpl implements INetworkDevice {
 			return ("16.001");
 		}
 		return null;
+	}
+
+	@Override
+	public void initDevices() {
+		// IConfigSet configSet =
+		// mConfigManager.getConfigSet(DeviceManager.LEIBNIX_DEVICE,
+		// "NETWORK_TYPE" = );
+		DeviceManager deviceManager = DeviceManager.getInstance();
+		List<Device> devices = deviceManager.getDevices(NETWORK_TYPE_EIB);
+		System.out.println("Found EIB-Devices: " + devices.size());
+		for (Device device : devices) {
+			System.out.println(device.getId());
+		}
 	}
 }
 

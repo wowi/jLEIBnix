@@ -4,8 +4,8 @@ import java.io.Serializable;
 
 public interface IMessage extends Serializable {
 
-	ITarget getDestination ();
-	ITarget getSource();
+	IBusDevice getDestination ();
+	IBusDevice getSource();
 	IValue getValue ();
 	String getValueAsString();
 }

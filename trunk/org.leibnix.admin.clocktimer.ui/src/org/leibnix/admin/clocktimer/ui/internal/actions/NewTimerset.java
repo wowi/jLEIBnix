@@ -13,7 +13,7 @@ import org.leibnix.admin.util.ui.NewTimesetWizard;
 import org.leibnix.core.BooleanValue;
 import org.leibnix.core.IMessage;
 import org.leibnix.core.Message;
-import org.leibnix.core.Target;
+import org.leibnix.core.Variable;
 import org.leibnix.device.clocktimer.interfaces.ClockEvent;
 
 public class NewTimerset extends ActionDelegate implements
@@ -40,7 +40,7 @@ public class NewTimerset extends ActionDelegate implements
 				ClockEvent event = new ClockEvent();
 				fillEvent(wizard, event);
 				event.setType(ClockEvent.TYPE_CRON);
-				IMessage msg = new Message(new Target("1/0/2", "TARGET_TYPE_EIB"), null,
+				IMessage msg = new Message(new Variable("1/0/2", Variable.TYPE_BOOLEAN), null,
 						new BooleanValue(true));
 				event.setMessage(msg);
 				device.getRemoteClockService().addEvent(event);

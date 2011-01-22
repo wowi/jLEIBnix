@@ -19,4 +19,6 @@ public interface INetworkDevice extends Device {
 	public void addListener(INetworkListener memb);
 
 	public void sendMessage(IMessage pMessage);
+
+	public void initDevices();
 }

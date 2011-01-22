@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Repository Client Plug-in
+Bundle-SymbolicName: org.leibnix.repository.client;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.leibnix.repository.client.Activator
+Bundle-Vendor: Leibnix.de
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui;bundle-version="3.6.1",
+ org.leibnix.repository.common;bundle-version="1.0.0",
+ org.leibnix.admin.core;bundle-version="1.0.0",
+ ch.ethz.iks.r_osgi.remote;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
