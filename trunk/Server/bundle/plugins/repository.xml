@@ -1,0 +1,146 @@
+<repository lastmodified="20151205102245.650" name="LeibNIX-Development">
+<!-- LeibNIX Libs Bundle -->
+<resource id="org.leibnix.libs/1.0.0" presentationname="LeibNIX Libs Bundle" symbolicname="org.leibnix.libs" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.libs_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Libs Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.libs'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+</resource>
+<!-- LeibNIX Core Bundle -->
+<resource id="org.leibnix.core/1.0.0" presentationname="LeibNIX Core Bundle" symbolicname="org.leibnix.core" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.core_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Core Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.core'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.libs)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.libs ;version=1.0.0</require>
+</resource>
+<!-- LeibNIX Configuration Bundle -->
+<resource id="org.leibnix.Configuration/1.0.0" presentationname="LeibNIX Configuration Bundle" symbolicname="org.leibnix.configuration" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.configuration_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Configuration Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.configuration'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.libs)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.libs ;version=1.0.0</require>
+</resource>
+<!-- LeibNIX Network Bundle -->
+<resource id="org.leibnix.network/1.0.0" presentationname="LeibNIX Network Bundle" symbolicname="org.leibnix.network" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.network_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Network Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.network'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+</resource>
+<!-- LeibNIX Server Bundle -->
+<resource id="org.leibnix.server.osgi/1.0.0" presentationname="LeibNIX Server Bundle" symbolicname="org.leibnix.server.osgi" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.server.osgi_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Server Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.server.osgi'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.osgi.service.device)(version>=1.1.0))" multiple="false" name="package" optional="false">Import package org.osgi.service.device ;version=3.0.0</require>
+</resource>
+<!-- LeibNIX EMB (Embedded Message Bus) Bundle -->
+<resource id="org.leibnix.emb.core/1.0.0" presentationname="LeibNIX EMB Bundle" symbolicname="org.leibnix.emb.core" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.emb.core_1.0.0.jar" version="1.0.0">
+<description>LeibNIX EMB Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.emb.core'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.server.osgi)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.server.osgi ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.network)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.network ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.configuration)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.configuration ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.osgi.service.device)(version>=1.1.0))" multiple="false" name="package" optional="false">Import package org.osgi.service.device ;version=1.1.0</require>
+</resource>
+<!-- LeibNIX KNX Network Bundle -->
+<resource id="org.leibnix.network.eibnetip/1.0.0" presentationname="LeibNIX KNX Network Bundle" symbolicname="org.leibnix.network.eibnetip" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.network.eibnetip_1.0.0.jar" version="1.0.0">
+<description>LeibNIX KNX Network Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.network.eibnetip'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.emb.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.emb.core ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.network)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.network ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.configuration)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.configuration ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.osgi.service.device)(version>=1.1.0))" multiple="false" name="package" optional="false">Import package org.osgi.service.device ;version=1.1.0</require>
+</resource>
+<!-- LeibNIX Clock Device Common Bundle -->
+<resource id="org.leibnix.device.clocktimer.interfaces/1.0.0" presentationname="LeibNIX Clock Device Common Bundle" symbolicname="org.leibnix.device.clocktimer.interfaces" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.device.clocktimer.interfaces_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Clock Device Common Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.device.clocktimer.interfaces'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+</resource>
+<!-- LeibNIX Clock Device Server Bundle -->
+<resource id="org.leibnix.device.clocktimer.server/1.0.0" presentationname="LeibNIX Clock Device Server Bundle" symbolicname="org.leibnix.device.clocktimer.server" uri="file:/C:/Daten/Development/eib-workspace-3.6.1/Felix/bundle/plugins/org.leibnix.device.clocktimer.server_1.0.0.jar" version="1.0.0">
+<description>LeibNIX Clock Device Server Bundle</description>
+<size>151654</size>
+<documentation>
+http://felix.apache.org/site/apache-felix-osgi-bundle-repository.html
+</documentation>
+<source>http://felix.apache.org/site/downloads.cgi</source>
+<license>http://www.apache.org/licenses/LICENSE-2.0.txt</license>
+<capability name='package'>
+    <p n='package' v='org.leibnix.device.clocktimer.server'/>
+    <p n='version' t='version' v='1.0.0'/>
+</capability>
+<require extend="false" filter="(&amp;(package=org.leibnix.core)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.core ;version=1.0.0</require>
+<require extend="false" filter="(&amp;(package=org.leibnix.device.clocktimer.interfaces)(version>=1.0.0))" multiple="false" name="package" optional="false">Import package org.leibnix.device.clock.interfaces ;version=1.0.0</require>
+</resource>
+</repository>
